@@ -1,0 +1,74 @@
+{
+  "name": "lazy-loading-router-provider",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/lazy-loading-router-provider/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/lazy-loading-router-provider"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "lazy-loading-router-provider:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "lazy-loading-router-provider:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "lazy-loading-router-provider:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "lazy-loading-router-provider:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "lazy-loading-router-provider:build:development"
+        },
+        "production": {
+          "buildTarget": "lazy-loading-router-provider:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/apps/lazy-loading-router-provider"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/lazy-loading-router-provider"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/lazy-loading-router-provider/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
